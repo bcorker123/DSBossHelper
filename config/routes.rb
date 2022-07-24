@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
   #resources :users
-  namespace :api do 
-    resources :bosses
+  scope '/api' do 
+    resources :bosses, only: [:index]
+    resources :characters, only: [:index]
+    resources :builds, only: [:index]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
