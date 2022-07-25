@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 
 function LoginForm({ handleLogin }) {
   const [formData, setFormData] = useState({
@@ -58,7 +58,7 @@ function LoginForm({ handleLogin }) {
           Login
         </Button>
       </Form>
-      {errors ? <div>!!{errors.error}!!</div> : null}
+      {errors ? <Alert variant="danger">!!{errors.error}!!</Alert> : null}
     </div>
   );
 }

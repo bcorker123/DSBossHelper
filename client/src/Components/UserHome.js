@@ -1,45 +1,43 @@
-import React, { useState, useEffect } from "react";
-import { Card } from "react-bootstrap";
+import React from "react";
+import { Container, Card, Badge, Col, Row, Button } from "react-bootstrap";
 
-function UserHome() {
-  const [bosses, setBosses] = useState([]);
-  const [builds, setBuilds] = useState([]);
-
-  useEffect(() => {
-    fetch("/api/bosses")
-      .then((r) => r.json())
-      .then((bossList) => setBosses(bossList));
-  }, []);
-
-  useEffect(() => {
-    fetch("/api/builds")
-      .then((r) => r.json())
-      .then((buildList) => setBuilds(buildList));
-  }, []);
-
+function UserHome({ user, selectChar }) {
+  console.log("in UserHome, user:", user);
   return (
-    <div>
-      {bosses[0]
-        ? bosses.map((boss) => {
+    <Container fluid>
+      <Row>
+        {user.characters.length > 0 ? (
+          user.characters.map((character) => {
             return (
-              <Card key={boss.id}>
-                {boss.name}
-                <Card.Img src={boss.image_url} alt={boss.name} />
-              </Card>
+              <Col key={character.id}>
+                <Card style={{ width: "150px" }} key={character.id}>
+                  <Card.Body>
+                    <Card.Title>{character.name}</Card.Title>
+                  </Card.Body>
+                  <Card.Img
+                    className="character-img"
+                    src={character.build_image}
+                    alt={character.name}
+                  />
+                  <Button
+                    onClick={() => selectChar(character.id)}
+                    variant="outline-danger"
+                  >
+                    Resume Playthrough
+                  </Button>
+                </Card>
+              </Col>
             );
           })
-        : null}
-      {builds[0]
-        ? builds.map((build) => {
-            return (
-              <Card key={build.id}>
-                {build.name}
-                <Card.Img src={build.image_url} alt={build.name} />
-              </Card>
-            );
-          })
-        : null}
-    </div>
+        ) : (
+          <h1>
+            <Badge bg="danger">
+              No characters yet! Click "Create Character" to get started.
+            </Badge>
+          </h1>
+        )}
+      </Row>
+    </Container>
   );
 }
 

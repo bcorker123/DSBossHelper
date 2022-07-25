@@ -11,6 +11,9 @@ function NavBar({ user, handleLogout }) {
               <div>
                 <Nav.Link href="/user-home">Home</Nav.Link>
               </div>
+              <div>
+                <Nav.Link href="/create-character">Create Character</Nav.Link>
+              </div>
             </div>
           ) : (
             <div>

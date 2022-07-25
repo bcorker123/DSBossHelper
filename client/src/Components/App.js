@@ -7,12 +7,17 @@ import SignupForm from "./SignupForm";
 import About from "./About";
 import NavBar from "./NavBar";
 import UserHome from "./UserHome";
+import CreateChar from "./CreateChar";
+import Guide from "./Guide";
 
 function App() {
   const [user, setUser] = useState({
     id: null,
     username: null,
+    characters: [],
   });
+
+  const [selectedChar, setSelectedChar] = useState({});
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -41,6 +46,24 @@ function App() {
     history.push("/");
   }
 
+  function handleNewChar(newChar) {
+    user.characters[user.characters.length] = newChar;
+    const updatedUser = { ...user };
+    setUser(updatedUser);
+  }
+
+  function selectChar(charId) {
+    const character = user.characters.find(
+      (character) => character.id === charId
+    );
+    setSelectedChar(character);
+    history.push("/guide");
+  }
+
+  function handleUpdateSelectedChar(character) {
+    setSelectedChar(character);
+  }
+
   return (
     <div className="App">
       <NavBar user={user} handleLogout={handleLogout} />
@@ -52,7 +75,16 @@ function App() {
           <SignupForm handleLogin={handleLogin} />
         </Route>
         <Route path="/user-home">
-          <UserHome />
+          <UserHome user={user} selectChar={selectChar} />
+        </Route>
+        <Route path="/guide/">
+          <Guide
+            selectedChar={selectedChar}
+            handleUpdateSelectedChar={handleUpdateSelectedChar}
+          />
+        </Route>
+        <Route path="/create-character">
+          <CreateChar user={user} handleNewChar={handleNewChar} />
         </Route>
         <Route path="/about">
           <About />
