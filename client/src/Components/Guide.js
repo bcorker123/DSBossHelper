@@ -37,6 +37,26 @@ function Guide({ selectedChar, handleUpdateSelectedChar }) {
     });
   }
 
+  function handleNewGame() {
+    fetch(`/api/characters/${selectedChar.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      // body: JSON.stringify({ boss_id: 1 }),
+      body: JSON.stringify({ boss_id: 26 }),
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((updatedChar) => {
+          setCurrentBoss(
+            bosses.find((boss) => boss.id === updatedChar.boss_id)
+          );
+          handleUpdateSelectedChar(updatedChar);
+        });
+      } else {
+        r.json().then((error) => console.log("error:", error));
+      }
+    });
+  }
+
   return (
     <Container>
       <h3 style={{ textAlign: "center" }}>
@@ -69,7 +89,16 @@ function Guide({ selectedChar, handleUpdateSelectedChar }) {
         <Button variant="dark">hint</Button>
       </Row>
       <Row>
-        {currentBoss.id < 24 ? (
+        {/* {currentBoss.id < 24 ? (
+          <Button onClick={handleBeatBoss} variant="outline-danger">
+            Beat the Boss!
+          </Button>
+        ) : (
+          <Button onClick={handleNewGame} variant="success">
+            START NEW GAME+
+          </Button>
+        )} */}
+        {currentBoss.id < 49 ? (
           <Button onClick={handleBeatBoss} variant="outline-danger">
             Beat the Boss!
           </Button>

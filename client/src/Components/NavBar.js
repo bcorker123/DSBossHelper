@@ -3,8 +3,8 @@ import { Container, Nav, Navbar, Button } from "react-bootstrap";
 
 function NavBar({ user, handleLogout }) {
   return (
-    <Navbar bg="light">
-      <Container>
+    <Container>
+      <Navbar bg="light">
         <Nav>
           {user.id ? (
             <div>
@@ -38,10 +38,10 @@ function NavBar({ user, handleLogout }) {
               Logout
             </Button>
           ) : null}
-          {user.id ? ` Welcome back, ${user.username}` : null}
+          {user.id ? ` ${user.username}` : null}
         </Navbar.Brand>
-      </Container>
-    </Navbar>
+      </Navbar>
+    </Container>
   );
 }
 

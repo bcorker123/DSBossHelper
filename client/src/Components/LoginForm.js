@@ -54,11 +54,11 @@ function LoginForm({ handleLogin }) {
             onChange={handleInput}
           />
         </Form.Group>
+        {errors ? <Alert variant="danger">{errors.error}</Alert> : null}
         <Button variant="outline-danger" type="submit">
           Login
         </Button>
       </Form>
-      {errors ? <Alert variant="danger">!!{errors.error}!!</Alert> : null}
     </div>
   );
 }

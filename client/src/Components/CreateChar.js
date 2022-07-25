@@ -16,7 +16,8 @@ function CreateChar({ user, handleNewChar }) {
   const [newChar, setNewChar] = useState({
     name: "",
     build_id: "",
-    boss_id: 1,
+    boss_id: 26,
+    // boss_id: 1,
     user_id: "",
   });
   const [errors, setErrors] = useState(null);
@@ -95,9 +96,6 @@ function CreateChar({ user, handleNewChar }) {
               })
             : null}
         </Row>
-        <Button variant="dark" onClick={handleCreateChar}>
-          Create Character
-        </Button>
         {errors
           ? errors.error.map((error) => {
               return (
@@ -107,6 +105,9 @@ function CreateChar({ user, handleNewChar }) {
               );
             })
           : null}
+        <Button variant="dark" onClick={handleCreateChar}>
+          Create Character
+        </Button>
       </Container>
     </div>
   );

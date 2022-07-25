@@ -16,7 +16,6 @@ function UserHome({ user, selectChar }) {
 
   return (
     <Container fluid>
-      {bosses[0] ? <div>{bosses[0].id}</div> : null}
       <Row>
         {user.characters.length > 0 ? (
           user.characters.map((character) => {
