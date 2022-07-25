@@ -69,7 +69,7 @@ function Guide({ selectedChar, handleUpdateSelectedChar }) {
         <Button variant="dark">hint</Button>
       </Row>
       <Row>
-        {currentBoss.id < 192 ? (
+        {currentBoss.id < 24 ? (
           <Button onClick={handleBeatBoss} variant="outline-danger">
             Beat the Boss!
           </Button>
