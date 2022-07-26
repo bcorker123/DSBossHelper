@@ -74,7 +74,7 @@ function App() {
         );
         const updatedUser = {
           id: user.id,
-          name: user.username,
+          username: user.username,
           characters: updatedCharacters,
         };
         setUser(updatedUser);

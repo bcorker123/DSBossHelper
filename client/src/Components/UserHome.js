@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Card, Badge, Col, Row, Button } from "react-bootstrap";
 
 function UserHome({ user, selectChar, handleDeleteChar }) {
-  console.log("in UserHome, user:", user);
+  // console.log("in UserHome, user:", user);
 
   return (
     <Container fluid>

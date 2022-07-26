@@ -39,7 +39,6 @@ function CreateChar({ user, handleNewChar }) {
   }
 
   function handleCreateChar() {
-    console.log("handleCreateChar, newChar:", newChar);
     fetch("/api/characters", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -57,8 +56,6 @@ function CreateChar({ user, handleNewChar }) {
       }
     });
   }
-
-  console.log(errors);
 
   return (
     <div>

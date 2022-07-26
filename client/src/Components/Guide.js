@@ -28,8 +28,8 @@ function Guide({ selectedChar, handleUpdateSelectedChar }) {
       });
   }, []);
 
-  console.log("selectedChar:", selectedChar);
-  console.log("current boss:", currentBoss);
+  // console.log("selectedChar:", selectedChar);
+  // console.log("current boss:", currentBoss);
 
   function handleBeatBoss() {
     setSmallHintToggle(false);
