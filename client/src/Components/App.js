@@ -64,6 +64,26 @@ function App() {
     setSelectedChar(character);
   }
 
+  function handleDeleteChar(charId) {
+    fetch(`/api/characters/${charId}`, {
+      method: "DELETE",
+    }).then((r) => {
+      if (r.ok) {
+        const updatedCharacters = { ...user }.characters.filter(
+          (character) => character.id !== charId
+        );
+        const updatedUser = {
+          id: user.id,
+          name: user.username,
+          characters: updatedCharacters,
+        };
+        setUser(updatedUser);
+      } else {
+        r.json().then((error) => console.log(error));
+      }
+    });
+  }
+
   return (
     <div className="App">
       <NavBar user={user} handleLogout={handleLogout} />
@@ -75,7 +95,11 @@ function App() {
           <SignupForm handleLogin={handleLogin} />
         </Route>
         <Route path="/user-home">
-          <UserHome user={user} selectChar={selectChar} />
+          <UserHome
+            user={user}
+            selectChar={selectChar}
+            handleDeleteChar={handleDeleteChar}
+          />
         </Route>
         <Route path="/guide/">
           <Guide

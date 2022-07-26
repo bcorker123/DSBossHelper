@@ -1,9 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Container, Card, Button, Badge, Row } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 function Guide({ selectedChar, handleUpdateSelectedChar }) {
   const [bosses, setBosses] = useState([]);
   const [currentBoss, setCurrentBoss] = useState({});
+  const [smallHintToggle, setSmallHintToggle] = useState(false);
+  const [mediumHintToggle, setMediumHintToggle] = useState(false);
+  const [bigHintToggle, setBigHintToggle] = useState(false);
+
+  /* 
+  if user reloads page, selectedChar state will reset 
+  and guide component will not render properly, so this
+  will redirect to user-home component
+  */
+  const history = useHistory();
+  if (!Boolean(selectedChar.name)) {
+    history.push("/user-home");
+  }
 
   useEffect(() => {
     fetch("/api/bosses")
@@ -14,10 +28,13 @@ function Guide({ selectedChar, handleUpdateSelectedChar }) {
       });
   }, []);
 
-  console.log(selectedChar);
+  console.log("selectedChar:", selectedChar);
   console.log("current boss:", currentBoss);
 
   function handleBeatBoss() {
+    setSmallHintToggle(false);
+    setMediumHintToggle(false);
+    setBigHintToggle(false);
     const boss_id = currentBoss.id + 1;
     fetch(`/api/characters/${selectedChar.id}`, {
       method: "PATCH",
@@ -38,11 +55,15 @@ function Guide({ selectedChar, handleUpdateSelectedChar }) {
   }
 
   function handleNewGame() {
+    // also increase NG attribute by 1
+    setSmallHintToggle(false);
+    setMediumHintToggle(false);
+    setBigHintToggle(false);
     fetch(`/api/characters/${selectedChar.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ boss_id: 1 }),
-      // body: JSON.stringify({ boss_id: 26 }),
+      // body: JSON.stringify({ boss_id: 1 }),
+      body: JSON.stringify({ boss_id: 26 }),
     }).then((r) => {
       if (r.ok) {
         r.json().then((updatedChar) => {
@@ -80,25 +101,22 @@ function Guide({ selectedChar, handleUpdateSelectedChar }) {
         />
       </Card>
       <Row>
-        <Button variant="light">hint</Button>
+        <Button onClick={() => setSmallHintToggle(true)} variant="light">
+          {smallHintToggle ? currentBoss.hints[0].small : "Small Hint"}
+        </Button>
       </Row>
       <Row>
-        <Button variant="secondary">hint</Button>
+        <Button onClick={() => setMediumHintToggle(true)} variant="secondary">
+          {mediumHintToggle ? currentBoss.hints[0].medium : "Medium Hint"}
+        </Button>
       </Row>
       <Row>
-        <Button variant="dark">hint</Button>
+        <Button onClick={() => setBigHintToggle(true)} variant="dark">
+          {bigHintToggle ? currentBoss.hints[0].big : "Big Hint"}
+        </Button>
       </Row>
       <Row>
-        {currentBoss.id < 24 ? (
-          <Button onClick={handleBeatBoss} variant="outline-danger">
-            Beat the Boss!
-          </Button>
-        ) : (
-          <Button onClick={handleNewGame} variant="success">
-            START NEW GAME+
-          </Button>
-        )}
-        {/* {currentBoss.id < 49 ? (
+        {/* {currentBoss.id < 24 ? (
           <Button onClick={handleBeatBoss} variant="outline-danger">
             Beat the Boss!
           </Button>
@@ -107,6 +125,15 @@ function Guide({ selectedChar, handleUpdateSelectedChar }) {
             START NEW GAME+
           </Button>
         )} */}
+        {currentBoss.id < 49 ? (
+          <Button onClick={handleBeatBoss} variant="outline-danger">
+            Beat the Boss!
+          </Button>
+        ) : (
+          <Button onClick={handleNewGame} variant="success">
+            START NEW GAME+
+          </Button>
+        )}
       </Row>
     </Container>
   );

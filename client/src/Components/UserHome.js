@@ -1,18 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Container, Card, Badge, Col, Row, Button } from "react-bootstrap";
 
-function UserHome({ user, selectChar }) {
+function UserHome({ user, selectChar, handleDeleteChar }) {
   console.log("in UserHome, user:", user);
-
-  const [bosses, setBosses] = useState([]);
-
-  useEffect(() => {
-    fetch("/api/bosses")
-      .then((r) => r.json())
-      .then((bosses) => {
-        setBosses(bosses);
-      });
-  }, []);
 
   return (
     <Container fluid>
@@ -32,9 +22,16 @@ function UserHome({ user, selectChar }) {
                   />
                   <Button
                     onClick={() => selectChar(character.id)}
-                    variant="outline-danger"
+                    variant="outline-success"
                   >
                     Resume Playthrough
+                  </Button>
+                  <Button
+                    onClick={() => handleDeleteChar(character.id)}
+                    size="sm"
+                    variant="outline-danger"
+                  >
+                    Delete Character
                   </Button>
                 </Card>
               </Col>
