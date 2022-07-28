@@ -9,6 +9,7 @@ import NavBar from "./NavBar";
 import UserHome from "./UserHome";
 import CreateChar from "./CreateChar";
 import Guide from "./Guide";
+import "../App.css";
 
 function App() {
   const [user, setUser] = useState({

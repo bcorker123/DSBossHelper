@@ -1,0 +1,39 @@
+/* :root {
+    --mainColor: #151D1B;
+    --mainColorLight: #4C504A;
+    --secondaryColor: #3c2c23;
+    --textColor: #AA543B;
+    --mainColorAlt: #AF6B4F;
+    --primary: #AF6B4F;
+}
+
+.App {
+    height:1000px;
+    background-color: var(--mainColor);
+}
+
+#nav-bar a {
+    color: var(--textColor)
+}
+
+form label {
+    color: var(--textColor)
+}
+
+.form-control {
+    background-color: var(--mainColor);
+    color: white
+}
+
+.form-control:focus {
+    background-color: var(--mainColorLight);
+    color: white
+}
+
+.buttons {
+    background-color: var(--mainColorAlt);
+}
+
+.bg-primary { 
+    background-color: var(--mainColorAlt);
+} */

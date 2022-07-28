@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Container, Card, Button, Badge, Row } from "react-bootstrap";
+import { Container, Card, Button, Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import styled, { keyframes } from "styled-components";
+import { shake } from "react-animations";
+// import Hints from "./Hints";
 
 function Guide({ selectedChar, handleUpdateSelectedChar }) {
   const [bosses, setBosses] = useState([]);
@@ -18,6 +21,11 @@ function Guide({ selectedChar, handleUpdateSelectedChar }) {
   if (!Boolean(selectedChar.name)) {
     history.push("/user-home");
   }
+
+  const shakeAnimation = keyframes`${shake}`;
+  const ShakeDiv = styled.div`
+    animation: 0.5s ${shakeAnimation};
+  `;
 
   useEffect(() => {
     fetch("/api/bosses")
@@ -80,26 +88,32 @@ function Guide({ selectedChar, handleUpdateSelectedChar }) {
 
   return (
     <Container>
-      <h3 style={{ textAlign: "center" }}>
-        <Badge size="sm" bg="secondary">
-          {selectedChar.name}
-        </Badge>
-      </h3>
+      <Card>
+        <Card.Header style={{ textAlign: "center" }}>
+          Current Character: {selectedChar.name.toUpperCase()}
+        </Card.Header>
+      </Card>
       <Card>
         <Card.Header style={{ textAlign: "center", fontWeight: "bold" }}>
-          {currentBoss.name}
+          <ShakeDiv>{currentBoss.name}</ShakeDiv>
         </Card.Header>
         <Card.Text style={{ color: "red", textAlign: "center" }}>
-          {currentBoss.health} HP
+          <ShakeDiv>{currentBoss.health} HP</ShakeDiv>
         </Card.Text>
         <Card.Text style={{ textAlign: "center" }}>
-          Location: {currentBoss.location}
+          <ShakeDiv>Location: {currentBoss.location}</ShakeDiv>
         </Card.Text>
         <Card.Img
           style={{ margin: "auto", maxWidth: "900px" }}
           src={currentBoss.image_url}
         />
       </Card>
+      {/* <Hints
+        currentBoss={currentBoss}
+        smallHintToggle={smallHintToggle}
+        mediumHintToggle={mediumHintToggle}
+        bigHintToggle={bigHintToggle}
+      /> */}
       <Row>
         <Button onClick={() => setSmallHintToggle(true)} variant="light">
           {smallHintToggle ? currentBoss.hints[0].small : "Small Hint"}
@@ -117,20 +131,20 @@ function Guide({ selectedChar, handleUpdateSelectedChar }) {
       </Row>
       <Row>
         {/* {currentBoss.id < 24 ? (
-          <Button onClick={handleBeatBoss} variant="outline-danger">
+          <Button onClick={handleBeatBoss} className="buttons" variant="danger">
             Beat the Boss!
           </Button>
         ) : (
-          <Button onClick={handleNewGame} variant="success">
+          <Button onClick={handleNewGame} className="buttons" variant="success">
             START NEW GAME+
           </Button>
         )} */}
         {currentBoss.id < 49 ? (
-          <Button onClick={handleBeatBoss} variant="outline-danger">
+          <Button onClick={handleBeatBoss} className="buttons" variant="danger">
             Beat the Boss!
           </Button>
         ) : (
-          <Button onClick={handleNewGame} variant="success">
+          <Button onClick={handleNewGame} className="buttons" variant="success">
             START NEW GAME+
           </Button>
         )}

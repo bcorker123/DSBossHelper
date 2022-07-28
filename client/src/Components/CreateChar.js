@@ -74,7 +74,9 @@ function CreateChar({ user, handleNewChar }) {
                   <Col key={build.id}>
                     <Card style={{ width: "150px" }} key={build.id}>
                       <Card.Body>
-                        <Card.Title>{build.name}</Card.Title>
+                        <Card.Title className="build-names">
+                          {build.name}
+                        </Card.Title>
                       </Card.Body>
                       <Card.Img
                         className="build-img"
@@ -83,7 +85,8 @@ function CreateChar({ user, handleNewChar }) {
                       />
                       <Button
                         onClick={() => handleSelectClass(build.id)}
-                        variant="outline-danger"
+                        className="buttons"
+                        variant="danger"
                       >
                         Select Class
                       </Button>
@@ -102,7 +105,12 @@ function CreateChar({ user, handleNewChar }) {
               );
             })
           : null}
-        <Button variant="dark" onClick={handleCreateChar}>
+        <Button
+          size="lg"
+          className="buttons"
+          variant="success"
+          onClick={handleCreateChar}
+        >
           Create Character
         </Button>
       </Container>

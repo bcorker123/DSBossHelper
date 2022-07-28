@@ -1,0 +1,83 @@
+:root {
+    --mainColor: #151D1B;
+    --mainColorLight: #4C504A;
+    --secondaryColor: #3c2c23;
+    --textColor: #AA543B;
+    --mainColorAlt: #AF6B4F;
+}
+
+* {
+    font-family:'Alegreya SC';
+}
+
+.App {
+    height:1500px;
+    background-color: var(--mainColor);
+}
+
+#nav-bar a {
+    color: var(--textColor);
+}
+
+form label {
+    color: var(--textColor)
+}
+
+.form-control {
+    background-color: var(--mainColor);
+    color: white;
+    max-width: 200px;
+}
+
+.form-control:focus, .input-group-text {
+    background-color: var(--mainColorLight);
+    color: white
+}
+
+.buttons {
+    background-color: var(--mainColorAlt);
+}
+
+.list-group-item, .card-body, .card-header {
+    background-color: var(--mainColor);
+    color: var(--textColor);
+    border: 2px solid var(--mainColorLight);
+}
+
+.nav-link, .navbar-brand {
+    color: var(--textColor);
+}
+
+.nav-link:focus, .nav-link:hover {
+    color: var(--mainColorAlt);
+}
+
+.card {
+    background-color: var(--mainColor);
+    color: var(--textColor);
+    border: 2px solid var(--mainColorLight)
+}
+
+#landing-page-title {
+    color:var(--mainColorAlt);
+    font-size:100px;
+    font-weight: bolder;
+    text-align: center;
+    padding-top:100px;
+    background-image: url('https://darksouls.wiki.fextralife.com/file/Dark-Souls/FierySpectacle.jpg');
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#no-characters-card {
+    max-width: 400px;
+    text-align:center;
+}
+
+.build-names {
+    font-size:19px;
+}
+
+.sign-in-forms {
+    text-align: center;
+}

@@ -1,40 +1,48 @@
 import React from "react";
-import { Container, Nav, Navbar, Button } from "react-bootstrap";
+import "../App.css";
+import { Container, Nav, Navbar, Button, Row, Col } from "react-bootstrap";
 
 function NavBar({ user, handleLogout }) {
   return (
-    <Container>
-      <Navbar bg="light">
+    <Container fluid id="nav-bar">
+      <Navbar>
         <Nav>
-          {user.id ? (
-            <div>
-              <div>
-                <Nav.Link href="/user-home">Home</Nav.Link>
-              </div>
-              <div>
-                <Nav.Link href="/create-character">Create Character</Nav.Link>
-              </div>
-            </div>
-          ) : (
-            <div>
-              <div>
-                <Nav.Link href="/">Home</Nav.Link>
-              </div>
-              <div>
-                <Nav.Link href="/login">Login</Nav.Link>
-              </div>
-              <div>
-                <Nav.Link href="/signup">Sign Up</Nav.Link>
-              </div>
-            </div>
-          )}
-          <div>
-            <Nav.Link href="/about">About</Nav.Link>
-          </div>
+          <Row>
+            {user.id ? (
+              <>
+                <Col>
+                  <Nav.Link href="/user-home">Home</Nav.Link>
+                </Col>
+                <Col>
+                  <Nav.Link href="/create-character">Create Character</Nav.Link>
+                </Col>
+              </>
+            ) : (
+              <>
+                <Col>
+                  <Nav.Link href="/">Home</Nav.Link>
+                </Col>
+                <Col>
+                  <Nav.Link href="/login">Login</Nav.Link>
+                </Col>
+                <Col>
+                  <Nav.Link href="/signup">Signup</Nav.Link>
+                </Col>
+              </>
+            )}
+            <Col>
+              <Nav.Link href="/about">About</Nav.Link>
+            </Col>
+          </Row>
         </Nav>
         <Navbar.Brand>
           {user.id ? (
-            <Button onClick={handleLogout} size="sm" variant="outline-danger">
+            <Button
+              onClick={handleLogout}
+              size="sm"
+              className="buttons"
+              variant="danger"
+            >
               Logout
             </Button>
           ) : null}

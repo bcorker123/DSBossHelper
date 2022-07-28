@@ -1,8 +1,20 @@
 import React from "react";
-import { Container, Card, Badge, Col, Row, Button } from "react-bootstrap";
+import { Container, Card, Col, Row, Button } from "react-bootstrap";
+import styled, { keyframes } from "styled-components";
+import { pulse, zoomInUp } from "react-animations";
 
 function UserHome({ user, selectChar, handleDeleteChar }) {
   // console.log("in UserHome, user:", user);
+
+  const pulseAnimation = keyframes`${pulse}`;
+  const PulseDiv = styled.div`
+    animation: 2s ${pulseAnimation};
+  `;
+
+  const zoomInUpAnimation = keyframes`${zoomInUp}`;
+  const ZoomInUpDiv = styled.div`
+    animation: 1s ${zoomInUpAnimation};
+  `;
 
   return (
     <Container fluid>
@@ -11,37 +23,43 @@ function UserHome({ user, selectChar, handleDeleteChar }) {
           user.characters.map((character) => {
             return (
               <Col key={character.id}>
-                <Card style={{ width: "150px" }} key={character.id}>
-                  <Card.Body>
-                    <Card.Title>{character.name}</Card.Title>
-                  </Card.Body>
-                  <Card.Img
-                    className="character-img"
-                    src={character.build_image}
-                    alt={character.name}
-                  />
-                  <Button
-                    onClick={() => selectChar(character.id)}
-                    variant="outline-success"
-                  >
-                    Resume Playthrough
-                  </Button>
+                <ZoomInUpDiv>
+                  <Card style={{ width: "150px" }} key={character.id}>
+                    <Card.Body>
+                      <Card.Title>{character.name}</Card.Title>
+                    </Card.Body>
+                    <Card.Img
+                      className="character-img"
+                      src={character.build_image}
+                      alt={character.name}
+                    />
+                    <Button
+                      onClick={() => selectChar(character.id)}
+                      className="buttons"
+                      variant="success"
+                    >
+                      Resume Playthrough
+                    </Button>
+                  </Card>
                   <Button
                     onClick={() => handleDeleteChar(character.id)}
                     size="sm"
-                    variant="outline-danger"
+                    className="buttons"
+                    variant="danger"
                   >
                     Delete Character
                   </Button>
-                </Card>
+                </ZoomInUpDiv>
               </Col>
             );
           })
         ) : (
           <h1>
-            <Badge bg="danger">
-              No characters yet! Click "Create Character" to get started.
-            </Badge>
+            <PulseDiv>
+              <Card id="no-characters-card">
+                No characters yet! Click "Create Character" to get started.
+              </Card>
+            </PulseDiv>
           </h1>
         )}
       </Row>
