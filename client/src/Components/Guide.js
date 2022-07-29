@@ -84,6 +84,7 @@ function Guide({ selectedChar, handleUpdateSelectedChar }) {
     }).then((r) => {
       if (r.ok) {
         r.json().then((updatedChar) => {
+          console.log("updatedChar obj", updatedChar);
           setCurrentBoss(
             bosses.find((boss) => boss.id === updatedChar.boss_id)
           );

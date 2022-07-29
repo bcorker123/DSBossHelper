@@ -40,6 +40,7 @@ function CreateChar({ user, handleNewChar }) {
   }
 
   function handleCreateChar() {
+    console.log("newChar obj:", newChar);
     fetch("/api/characters", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -47,11 +48,13 @@ function CreateChar({ user, handleNewChar }) {
     }).then((r) => {
       if (r.ok) {
         r.json().then((createdChar) => {
+          console.log("response char obj:", createdChar);
           handleNewChar(createdChar);
           history.push(`/user-home`);
         });
       } else {
         r.json().then((errors) => {
+          console.log("response error:", errors);
           setErrors(errors);
         });
       }
