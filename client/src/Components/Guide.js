@@ -47,10 +47,14 @@ function Guide({ selectedChar, handleUpdateSelectedChar }) {
     fetch(`/api/characters/${selectedChar.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ boss_id: boss_id }),
+      body: JSON.stringify({
+        boss_id: boss_id,
+        ng: selectedChar.ng,
+      }),
     }).then((r) => {
       if (r.ok) {
         r.json().then((updatedChar) => {
+          console.log("response char:", updatedChar);
           setCurrentBoss(
             bosses.find((boss) => boss.id === updatedChar.boss_id)
           );
@@ -63,15 +67,20 @@ function Guide({ selectedChar, handleUpdateSelectedChar }) {
   }
 
   function handleNewGame() {
-    // also increase NG attribute by 1
     setSmallHintToggle(false);
     setMediumHintToggle(false);
     setBigHintToggle(false);
     fetch(`/api/characters/${selectedChar.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      // body: JSON.stringify({ boss_id: 1 }),
-      body: JSON.stringify({ boss_id: 26 }),
+      // body: JSON.stringify({
+      //   boss_id: 1,
+      //   ng: selectedChar.ng + 1,
+      // }),
+      body: JSON.stringify({
+        boss_id: 26,
+        ng: selectedChar.ng + 1,
+      }),
     }).then((r) => {
       if (r.ok) {
         r.json().then((updatedChar) => {
@@ -90,7 +99,8 @@ function Guide({ selectedChar, handleUpdateSelectedChar }) {
     <Container>
       <Card>
         <Card.Header style={{ textAlign: "center" }}>
-          Current Character: {selectedChar.name.toUpperCase()}
+          Current Character: {selectedChar.name.toUpperCase()}{" "}
+          {selectedChar.ng > 1 ? `NG+${selectedChar.ng - 1}` : null}
         </Card.Header>
       </Card>
       <Card>
@@ -98,10 +108,14 @@ function Guide({ selectedChar, handleUpdateSelectedChar }) {
           <ShakeDiv>{currentBoss.name}</ShakeDiv>
         </Card.Header>
         <Card.Text style={{ color: "red", textAlign: "center" }}>
-          <ShakeDiv>{currentBoss.health} HP</ShakeDiv>
+          <ShakeDiv className="boss-health">
+            {currentBoss.health * selectedChar.ng} HP
+          </ShakeDiv>
         </Card.Text>
         <Card.Text style={{ textAlign: "center" }}>
-          <ShakeDiv>Location: {currentBoss.location}</ShakeDiv>
+          <ShakeDiv className="boss-location">
+            Location: {currentBoss.location}
+          </ShakeDiv>
         </Card.Text>
         <Card.Img
           style={{ margin: "auto", maxWidth: "900px" }}
@@ -115,36 +129,64 @@ function Guide({ selectedChar, handleUpdateSelectedChar }) {
         bigHintToggle={bigHintToggle}
       /> */}
       <Row>
-        <Button onClick={() => setSmallHintToggle(true)} variant="light">
+        <Button
+          className="hint"
+          onClick={() => setSmallHintToggle(true)}
+          variant="light"
+        >
           {smallHintToggle ? currentBoss.hints[0].small : "Small Hint"}
         </Button>
       </Row>
       <Row>
-        <Button onClick={() => setMediumHintToggle(true)} variant="secondary">
+        <Button
+          className="hint"
+          onClick={() => setMediumHintToggle(true)}
+          variant="secondary"
+        >
           {mediumHintToggle ? currentBoss.hints[0].medium : "Medium Hint"}
         </Button>
       </Row>
       <Row>
-        <Button onClick={() => setBigHintToggle(true)} variant="dark">
+        <Button
+          className="hint"
+          onClick={() => setBigHintToggle(true)}
+          variant="dark"
+        >
           {bigHintToggle ? currentBoss.hints[0].big : "Big Hint"}
         </Button>
       </Row>
       <Row>
         {/* {currentBoss.id < 24 ? (
-          <Button onClick={handleBeatBoss} className="buttons" variant="danger">
+          <Button
+            onClick={handleBeatBoss}
+            className="hint buttons"
+            variant="danger"
+          >
             Beat the Boss!
           </Button>
         ) : (
-          <Button onClick={handleNewGame} className="buttons" variant="success">
-            START NEW GAME+
+          <Button
+            onClick={handleNewGame}
+            className="hint buttons"
+            variant="success"
+          >
+            Congrats!! START NEW GAME+
           </Button>
         )} */}
         {currentBoss.id < 49 ? (
-          <Button onClick={handleBeatBoss} className="buttons" variant="danger">
+          <Button
+            onClick={handleBeatBoss}
+            className="hint buttons"
+            variant="danger"
+          >
             Beat the Boss!
           </Button>
         ) : (
-          <Button onClick={handleNewGame} className="buttons" variant="success">
+          <Button
+            onClick={handleNewGame}
+            className="hint buttons"
+            variant="success"
+          >
             START NEW GAME+
           </Button>
         )}

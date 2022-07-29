@@ -31,7 +31,7 @@ function NavBar({ user, handleLogout }) {
               </>
             )}
             <Col>
-              <Nav.Link href="/about">About</Nav.Link>
+              <Nav.Link href="/about">About the Dev</Nav.Link>
             </Col>
           </Row>
         </Nav>

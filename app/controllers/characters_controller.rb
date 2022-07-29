@@ -12,7 +12,7 @@ class CharactersController < ApplicationController
 
     def update 
         character = Character.find(params[:id])
-        character.update(boss_id: params[:boss_id])
+        character.update(boss_id: params[:boss_id], ng: params[:ng])
         puts character
         render json: character, status: :ok
     end
@@ -26,6 +26,6 @@ class CharactersController < ApplicationController
     private 
 
     def character_params
-        params.permit(:name, :build_id, :user_id, :boss_id)
+        params.permit(:name, :build_id, :user_id, :boss_id, :ng)
     end 
 end

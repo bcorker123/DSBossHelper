@@ -17,8 +17,9 @@ function CreateChar({ user, handleNewChar }) {
     name: "",
     build_id: "",
     boss_id: 26,
-    // boss_id: 1,
+    //boss_id: 1,
     user_id: "",
+    ng: 1,
   });
   const [errors, setErrors] = useState(null);
 
@@ -58,7 +59,7 @@ function CreateChar({ user, handleNewChar }) {
   }
 
   return (
-    <div>
+    <div id="create-character-outer-div">
       <Container fluid>
         <InputGroup>
           <InputGroup.Text>Name:</InputGroup.Text>
@@ -106,6 +107,7 @@ function CreateChar({ user, handleNewChar }) {
             })
           : null}
         <Button
+          id="create-character-btn"
           size="lg"
           className="buttons"
           variant="success"

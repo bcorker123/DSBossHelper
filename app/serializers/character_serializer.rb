@@ -1,5 +1,5 @@
 class CharacterSerializer < ActiveModel::Serializer
-  attributes :id, :name, :build_image, :user_id, :boss_id
+  attributes :id, :name, :build_image, :user_id, :boss_id, :ng
 
   belongs_to :build
 

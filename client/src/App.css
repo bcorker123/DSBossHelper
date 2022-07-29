@@ -10,23 +10,54 @@
     font-family:'Alegreya SC';
 }
 
+#root {
+    background-color: var(--mainColor);
+}
+
 .App {
     height:1500px;
     background-color: var(--mainColor);
+    max-width: 2000px;
+    margin: auto;
+    background-image: url('https://i.imgur.com/3Xfb4Fo.png');
+    /* 
+    image at 100% opacity 
+    background-image: url('https://darksouls.wiki.fextralife.com/file/Dark-Souls/TheBlackKnight_Art.jpg'); 
+    */
+    background-size: cover;
 }
 
 #nav-bar a {
     color: var(--textColor);
+    font-size:30px;
+}
+
+form {
+    max-width: 600px;
+    margin: auto;
+}
+
+.container {
+    max-width: 750px;
+    margin: auto;
+}
+
+#create-character-outer-div {
+    
+    max-width: 1000px;
+    margin: auto;
 }
 
 form label {
-    color: var(--textColor)
+    color: var(--textColor);
+    font-size:20px;
 }
 
 .form-control {
     background-color: var(--mainColor);
     color: white;
     max-width: 200px;
+    font-size:20px;
 }
 
 .form-control:focus, .input-group-text {
@@ -36,16 +67,19 @@ form label {
 
 .buttons {
     background-color: var(--mainColorAlt);
+    font-size:20px;
 }
 
 .list-group-item, .card-body, .card-header {
     background-color: var(--mainColor);
     color: var(--textColor);
     border: 2px solid var(--mainColorLight);
+    font-size:30px;
 }
 
 .nav-link, .navbar-brand {
     color: var(--textColor);
+    font-size:30px;
 }
 
 .nav-link:focus, .nav-link:hover {
@@ -55,8 +89,11 @@ form label {
 .card {
     background-color: var(--mainColor);
     color: var(--textColor);
-    border: 2px solid var(--mainColorLight)
+    border: 2px solid var(--mainColorLight);
 }
+
+.card-title{
+    font-size:30px;}
 
 #landing-page-title {
     color:var(--mainColorAlt);
@@ -80,4 +117,45 @@ form label {
 
 .sign-in-forms {
     text-align: center;
+}
+
+.ng-help {
+    background-color: var(--mainColor);
+    border: 2px solid var(--mainColorLight);
+    color:var(--textColor);
+    max-width:300px;
+    font-size:20px;
+}
+
+.input-group-text {
+    font-size:20px;
+}
+
+.input-group {
+    max-width: 350px;
+    margin: auto;
+}
+
+#create-character-btn {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.alert {
+    max-width: 200px;
+}
+
+.boss-health {
+    font-size:20px;
+    color: "red";
+    text-align: "center";
+}
+
+.boss-location {
+    font-size:20px;
+    text-align: "center";
+}
+
+.hint {
+    font-size: 25px;
 }
