@@ -71,6 +71,7 @@ function CreateChar({ user, handleNewChar }) {
             value={newChar.name}
           ></Form.Control>
         </InputGroup>
+        <p></p>
         <Row>
           {builds[0]
             ? builds.map((build) => {
@@ -109,6 +110,7 @@ function CreateChar({ user, handleNewChar }) {
               );
             })
           : null}
+        <p></p>
         <Button
           id="create-character-btn"
           size="lg"
