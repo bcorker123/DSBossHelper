@@ -73,14 +73,14 @@ function Guide({ selectedChar, handleUpdateSelectedChar }) {
     fetch(`/api/characters/${selectedChar.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        boss_id: 1,
-        ng: selectedChar.ng + 1,
-      }),
       // body: JSON.stringify({
-      //   boss_id: 26,
+      //   boss_id: 1,
       //   ng: selectedChar.ng + 1,
       // }),
+      body: JSON.stringify({
+        boss_id: 26,
+        ng: selectedChar.ng + 1,
+      }),
     }).then((r) => {
       if (r.ok) {
         r.json().then((updatedChar) => {
@@ -157,7 +157,7 @@ function Guide({ selectedChar, handleUpdateSelectedChar }) {
         </Button>
       </Row>
       <Row>
-        {currentBoss.id < 24 ? (
+        {/* {currentBoss.id < 24 ? (
           <Button
             onClick={handleBeatBoss}
             className="hint buttons"
@@ -173,8 +173,8 @@ function Guide({ selectedChar, handleUpdateSelectedChar }) {
           >
             Congrats!! START NEW GAME+
           </Button>
-        )}
-        {/* {currentBoss.id < 49 ? (
+        )} */}
+        {currentBoss.id < 49 ? (
           <Button
             onClick={handleBeatBoss}
             className="hint buttons"
@@ -190,7 +190,7 @@ function Guide({ selectedChar, handleUpdateSelectedChar }) {
           >
             START NEW GAME+
           </Button>
-        )} */}
+        )}
       </Row>
     </Container>
   );

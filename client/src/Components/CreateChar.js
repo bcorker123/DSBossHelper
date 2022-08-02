@@ -16,8 +16,8 @@ function CreateChar({ user, handleNewChar }) {
   const [newChar, setNewChar] = useState({
     name: "",
     build_id: "",
-    // boss_id: 26,
-    boss_id: 1,
+    boss_id: 26,
+    // boss_id: 1,
     user_id: "",
     ng: 1,
   });
