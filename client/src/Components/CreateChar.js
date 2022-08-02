@@ -16,8 +16,8 @@ function CreateChar({ user, handleNewChar }) {
   const [newChar, setNewChar] = useState({
     name: "",
     build_id: "",
-    boss_id: 26,
-    //boss_id: 1,
+    // boss_id: 26,
+    boss_id: 1,
     user_id: "",
     ng: 1,
   });
@@ -76,7 +76,7 @@ function CreateChar({ user, handleNewChar }) {
           {builds[0]
             ? builds.map((build) => {
                 return (
-                  <Col key={build.id}>
+                  <Col className="select-class-col" key={build.id}>
                     <Card style={{ width: "150px" }} key={build.id}>
                       <Card.Body>
                         <Card.Title className="build-names">
@@ -111,15 +111,17 @@ function CreateChar({ user, handleNewChar }) {
             })
           : null}
         <p></p>
-        <Button
-          id="create-character-btn"
-          size="lg"
-          className="buttons"
-          variant="success"
-          onClick={handleCreateChar}
-        >
-          Create Character
-        </Button>
+        <div id="create-character-btn-container">
+          <Button
+            id="create-character-btn"
+            size="lg"
+            className="buttons"
+            variant="success"
+            onClick={handleCreateChar}
+          >
+            Create Character
+          </Button>
+        </div>
       </Container>
     </div>
   );

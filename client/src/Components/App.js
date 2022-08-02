@@ -9,6 +9,7 @@ import NavBar from "./NavBar";
 import UserHome from "./UserHome";
 import CreateChar from "./CreateChar";
 import Guide from "./Guide";
+import Footer from "./Footer";
 import "../App.css";
 
 function App() {
@@ -118,6 +119,7 @@ function App() {
           <LandingPage />
         </Route>
       </Switch>
+      <Footer />
     </div>
   );
 }

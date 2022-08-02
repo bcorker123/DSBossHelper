@@ -10,10 +10,10 @@ function NavBar({ user, handleLogout }) {
           <Row>
             {user.id ? (
               <>
-                <Col>
+                <Col id="nav-home-col">
                   <Nav.Link href="/user-home">Home</Nav.Link>
                 </Col>
-                <Col>
+                <Col id="nav-createchar-col">
                   <Nav.Link href="/create-character">Create Character</Nav.Link>
                 </Col>
               </>
@@ -30,9 +30,9 @@ function NavBar({ user, handleLogout }) {
                 </Col>
               </>
             )}
-            <Col>
+            {/* <Col>
               <Nav.Link href="/about">About the Dev</Nav.Link>
-            </Col>
+            </Col> */}
           </Row>
         </Nav>
         <Navbar.Brand>
@@ -46,8 +46,8 @@ function NavBar({ user, handleLogout }) {
               Logout
             </Button>
           ) : null}
-          {user.id ? ` ${user.username}` : null}
         </Navbar.Brand>
+        <div className="nav-link">{user.id ? ` ${user.username}` : null}</div>
       </Navbar>
     </Container>
   );

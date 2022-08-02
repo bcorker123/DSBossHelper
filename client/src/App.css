@@ -86,6 +86,14 @@ form label {
     color: var(--mainColorAlt);
 }
 
+#nav-home-col {
+    width: 30px;
+}
+
+#nav-createchar-col {
+    padding-right: 40px;
+}
+
 .card {
     background-color: var(--mainColor);
     color: var(--textColor);
@@ -123,7 +131,6 @@ form label {
     background-color: var(--mainColor);
     border: 2px solid var(--mainColorLight);
     color:var(--textColor);
-    max-width:300px;
     font-size:20px;
 }
 
@@ -139,6 +146,14 @@ form label {
 #create-character-btn {
     max-width: 1000px;
     margin: auto;
+}
+
+#create-character-btn-container {
+    text-align: center;
+}
+
+.select-class-col {
+    padding-bottom: 20px;
 }
 
 .alert {
@@ -158,4 +173,21 @@ form label {
 
 .hint {
     font-size: 25px;
+}
+
+#footer-container {
+    position: fixed;
+    bottom:0;
+    max-width: 1900px;
+}
+
+#footer-card {
+    max-width: 1000px;
+    text-align: center;
+    margin:auto;
+}
+
+#footer-link {
+    margin:auto;
+    text-align: center;
 }
