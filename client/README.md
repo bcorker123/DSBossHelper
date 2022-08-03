@@ -1,3 +1,8 @@
+# Dark Souls Boss Helper App
+
+Hi! This is the final project for the Software Engineering course at Flatiron School. A "Boss
+Helper" for the video game Dark Souls 1 that uses a JavaScript React front-end with a Ruby on Rails back-end and deployed onto Heroku. Below is the default README that comes with Create React App.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
