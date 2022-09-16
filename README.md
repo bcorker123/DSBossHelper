@@ -3,7 +3,9 @@
 Hi! This is the final project for the Software Engineering course at Flatiron School. A "Boss
 Helper" for the video game Dark Souls 1 that uses a JavaScript React front-end with a Ruby on Rails back-end and deployed onto Heroku. Below is the default README that comes with Create React App.
 
-Find and use the deployed version of the app at https://damp-beach-54063.herokuapp.com/
+Video demo of the app: https://www.youtube.com/watch?v=tg7cOIdQ8O8&list=PLp4qT0wGNON0FAXiD_jc6fSru9I6wy-Dv&index=1&t=1s
+
+Use the deployed version of the app: https://damp-beach-54063.herokuapp.com/
 
 # Getting Started with Create React App
 
